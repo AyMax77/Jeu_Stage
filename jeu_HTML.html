@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turn-Based Battle Game</title>
+  <link rel="stylesheet" href="CSS_jeu.css">
+</head>
+<body>
+  <div id="game">
+    <h1>Jeu tour par tour</h1>
+    <div id="weapons-container">
+      <h2>Armes</h2>
+      <ul id="weapons-list"></ul>
+
+    </div>
+    
+    
+    <!-- Plateau de jeu -->
+    <div id="game-board">
+      <!-- Les cellules du jeu -->
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <!-- Répétez pour toutes les cases -->
+    </div>
+    
+    <!-- Statistiques des joueurs -->
+    <div id="player-stats">
+      <!-- Joueur 1 -->
+      <div id="player1" class="character">
+        <img src="images_jeu/samourai.webp" alt="Samouraï" class="character-image">
+        <div class="health-info">
+          <span class="health-text">Santé: <span id="player1-health">100</span>/100</span>
+          <div class="health-bar-container">
+            <div id="player1-health-bar" class="health-bar"></div>
+          </div>
+        </div>
+        <!-- Informations sur l'arme du joueur 1 -->
+        <div class="weapon-info">
+          <img id="player1-weapon-image" src="images_jeu/shuriken.jpg"  class="weapon-image">
+          <span id="player1-weapon-name" class="weapon-name">Shuriken</span>
+        </div>
+      </div>
+    
+      <!-- Joueur 2 -->
+      <div id="player2" class="character">
+        <img src="images_jeu/ogre.webp" alt="Ogre" class="character-image">
+        <div class="health-info">
+          <span class="health-text">Santé: <span id="player2-health">100</span>/100</span>
+          <div class="health-bar-container">
+            <div id="player2-health-bar" class="health-bar"></div>
+          </div>
+        </div>
+        <!-- Informations sur l'arme du joueur 2 -->
+        <div class="weapon-info">
+          <img id="player2-weapon-image" src="images_jeu/shuriken.jpg"  class="weapon-image">
+          <span id="player2-weapon-name" class="weapon-name">Shuriken</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Actions des joueurs -->
+    <div id="actions">
+      <button id="attack">Attaquer</button>
+      <button id="defend">Défendre</button>
+      <button id="restartButton">Redémarrer</button>
+    </div>
+    
+    <!-- Log des actions -->
+    <div id="log"></div>
+  </div>
+
+  <!-- Script -->
+  <script src="création_jeu.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,304 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Utilisation de la hauteur complète de la page */
+}
+
+#game {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 800px;
+  text-align: center;
+}
+
+/* Ajout de styles pour le titre du jeu */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#player-stats {
+  display: flex; /* Utilisation du mode flex pour aligner les éléments côte à côte */
+  flex-direction: row; /* Organisation des personnages sur une ligne */
+  gap: 60px; /* Espace entre chaque personnage */
+  margin-bottom: 40px; /* Marge sous les personnages */
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 20px; /* Agrandir la taille de la police pour le texte */
+}
+
+.character1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0px;
+  background-image: url('images_jeu/samourai.webp'); /* Chemin de l'image */
+  background-size: cover; /* Ajuste l'image pour couvrir tout le bloc */
+  background-position: center; /* Centre l'image */
+  width: 50px; /* Largeur de la case */
+  height: 50px; /* Hauteur de la case */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.character2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0px;
+  background-image: url('images_jeu/ogre.webp'); /* Chemin de l'image */
+  background-size: cover; /* Ajuste l'image pour couvrir tout le bloc */
+  background-position: center; /* Centre l'image */
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(184, 0, 0, 0.2);
+}
+
+#player1 {
+  background-color: green; /* Fond rouge pour le Joueur 1 */
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+#player2 {
+  background-color: red; /* Fond vert pour le Joueur 2 */
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+
+.character-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.health-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.health-text {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.health-bar-container {
+  width: 100%; /* S'assure que le conteneur occupe toute la largeur */
+  height: 20px; /* Hauteur de la barre */
+  background-color: #ccc; /* Fond gris clair */
+  border-radius: 10px; /* Coins arrondis */
+}
+
+.health-bar {
+  width: 100%; /* La barre de vie occupe initialement 100% de la largeur */
+  height: 100%; /* Prend toute la hauteur du conteneur */
+  border-radius: 10px; /* Coins arrondis */
+  background-color: #76c7c0; /* Couleur initiale de la barre (vert clair) */
+  transition: width 0.3s ease; /* Animation fluide lors de la mise à jour de la largeur */
+}
+
+.weapon-info {
+  display: flex;
+  flex-direction: column; /* Affiche le nom de l'arme sous l'image */
+  align-items: center; /* Centre les éléments horizontalement */
+  margin-top: 10px; /* Ajoute un espace entre l'arme et la barre de santé */
+}
+
+.weapon-image {
+  width: 100px; /* Taille de l'image de l'arme */
+  height: 100px;
+  object-fit: cover; /* Ajuste l'image pour remplir son conteneur sans déformation */
+  border: 2px solid #ccc; /* Bordure grise autour de l'image */
+  border-radius: 10px; /* Coins arrondis */
+}
+
+.weapon-name {
+  margin-top: 5px; /* Espace entre l'image et le nom */
+  font-size: 14px; /* Taille du texte pour le nom de l'arme */
+  font-weight: bold; /* Met le nom en gras */
+  color: #333; /* Couleur du texte */
+}
+
+
+#game-board {
+  display: flex; /* Utilisation du modèle flexbox */
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  position: relative;
+  width: 100%; /* Largeur du conteneur à 100% */
+  height: 65%; /* Hauteur du conteneur à 100% */
+  background-image: url('images_jeu/background.webp');
+  background-size: 95% 100% ; /* Ajuste l'image pour qu'elle occupe toute la surface du conteneur, sans déformation */
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1;
+}
+
+
+#game-board .cell {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Garder l'alignement de la grille sur 15 colonnes et 12 lignes */
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(15, 50px); /* 15 colonnes */
+  grid-template-rows: repeat(12, 50px);    /* 12 lignes */
+  gap: 0px;
+}
+
+.cell.highlight {
+  background-color: yellow;
+  cursor: pointer;
+}
+
+
+/* Boutons et actions */
+#actions {
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Bouton "Attack" en rouge */
+#attack {
+  background-color: #FF0000; /* Rouge vif */
+  color: white;
+}
+
+#attack:hover {
+  background-color: #CC0000; /* Rouge plus sombre au survol */
+}
+
+#defend {
+  background-color: green;  /* vert vif */
+  color: white 
+}
+#defend:hover {
+  background-color: darkgreen; /* vert plus sombre au survol */
+}
+
+/* Bouton "Restart" en bleu */
+#restartButton {
+  background-color: #007BFF; /* Bleu vif */
+  color: white;
+}
+
+#restartButton:hover {
+  background-color: #0056b3; /* Bleu plus sombre au survol */
+}
+
+select {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+#log {
+  margin-top: 20px;
+  height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #fafafa;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Style du texte des stats et actions */
+#player-stats, #actions {
+  margin-bottom: 20px;
+}
+
+#log {
+  margin-top: 20px;
+  height: 150px;
+  overflow-y: scroll;
+}
+/* Conteneur des armes */
+#weapons-container {
+  position: absolute;
+  top: 70%; /* Centré verticalement */
+  left: 133px; /* Proche du bord gauche */
+  transform: translateY(-50%);
+  background-color: #fff; /* Fond blanc */
+  border: 1px solid #ccc; /* Bord gris clair */
+  border-radius: 8px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  text-align: left;
+}
+
+/* Titre des armes */
+#weapons-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Liste des armes */
+#weapons-container ul {
+  list-style-type: none; /* Supprime les puces */
+  padding: 0;
+  margin: 0;
+}
+
+/* Élément de la liste */
+#weapons-container li {
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #444;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Style des dégâts */
+.weapon-damage {
+  font-weight: bold;
+  color: red;
+}
+
