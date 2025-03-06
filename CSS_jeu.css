@@ -1,13 +1,14 @@
+/* Styles par défaut pour les écrans larges (ordinateur de bureau) */
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Utilisation de la hauteur complète de la page */
+  background-color: #f4f4f4;
+  height: 100vh;
 }
 
 #game {
@@ -27,18 +28,18 @@ h1 {
   color: #333;
   text-transform: uppercase;
   letter-spacing: 2px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 #player-stats {
   display: flex; /* Utilisation du mode flex pour aligner les éléments côte à côte */
   flex-direction: row; /* Organisation des personnages sur une ligne */
-  gap: 60px; /* Espace entre chaque personnage */
-  margin-bottom: 40px; /* Marge sous les personnages */
+  gap: 20px; /* Espace entre chaque personnage */
+  margin-bottom: 20px; /* Marge sous les personnages */
   position: absolute;
   top: 20px;
   left: 20px;
   font-size: 20px; /* Agrandir la taille de la police pour le texte */
+  justify-content: space-between;
 }
 
 .character1 {
@@ -53,9 +54,11 @@ h1 {
   height: 50px; /* Hauteur de la case */
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  flex-direction: column;
 }
 
 .character2 {
+  flex-direction: column;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,11 +90,11 @@ h1 {
 
 
 .character-image {
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  margin-right: 15px;
 }
+
 
 .health-info {
   display: flex;
@@ -186,7 +189,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-button {
+#actions button {
   padding: 10px 20px;
   margin: 5px;
   border: none;
@@ -238,9 +241,9 @@ select {
 }
 
 .cell {
-  width: 40px;
-  height: 40px;
-  border: 1px solid #ccc;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #000000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -250,11 +253,7 @@ select {
   margin-bottom: 20px;
 }
 
-#log {
-  margin-top: 20px;
-  height: 150px;
-  overflow-y: scroll;
-}
+
 /* Conteneur des armes */
 #weapons-container {
   position: absolute;
@@ -290,7 +289,7 @@ select {
 #weapons-container li {
   margin: 10px 0;
   font-size: 1rem;
-  color: #444;
+  color: #000000;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -302,3 +301,98 @@ select {
   color: red;
 }
 
+/* Pour les tablettes (max-width: 768px) */
+@media (max-width: 768px) {
+  #game {
+    width: 71%;
+    padding: 90px;
+  }
+
+  h1 {
+    font-size: 2rem; /* Taille du titre réduite sur tablette */
+  }
+
+  #game-board {
+    grid-template-columns: repeat(10, 50px); /* Réduire le nombre de colonnes */
+    grid-template-rows: repeat(8, 50px); /* Réduire le nombre de lignes */
+  }
+
+  .character-image {
+    width: 30px; /* Réduire la taille des personnages */
+    height: 30px;
+  }
+
+  #player-stats {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Réduire la taille des armes (images et noms) */
+  .weapon-image {
+    width: 40px; /* Réduire la taille des images d'armes */
+    height: 40px;
+  }
+
+  .weapon-name {
+    font-size: 12px; /* Réduire la taille du texte pour les armes */
+  }
+  
+}
+
+/* Pour les téléphones (max-width: 480px) */
+@media (max-width: 480px) {
+  body {
+    font-size: 0.9rem; /* Réduire légèrement la taille du texte sur téléphone */
+  }
+
+  #game {
+    width: 85%;
+    padding: 5px;
+  }
+
+  h1 {
+    font-size: 1.5rem; /* Taille du titre encore réduite sur mobile */
+  }
+
+
+  .character-image {
+    width: 50px; /* Réduire la taille des personnages sur mobile */
+    height: 50px;
+  }
+
+  #player-stats {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 5px;
+    background: rgba(0, 0, 0, 0.8); /* Ajoute un fond pour la visibilité */
+    color: white;
+    padding: 10px;
+}
+  #actions button {
+    padding: 8px 16px;
+  }
+
+  #log {
+    height: 120px; /* Réduire la taille du log pour les petits écrans */
+  }
+
+  /* Réduire la taille des armes (images et noms) */
+  .weapon-image {
+    width: 60px; /* Réduire la taille des images d'armes sur mobile */
+    height: 60px;
+  }
+
+  .weapon-name {
+    font-size: 10px; /* Réduire la taille du texte pour les armes sur mobile */
+  }
+}
